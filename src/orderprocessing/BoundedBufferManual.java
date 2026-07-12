@@ -4,13 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Buffer condiviso a capacità limitata (bounded buffer), implementato
- * "a basso livello" con il monitor pattern di Java.
- *
- * Regole del problema Produttore-Consumatore:
- *  - Un produttore deve BLOCCARSI se il buffer è pieno (evita overflow/starvation dei consumatori)
- *  - Un consumatore deve BLOCCARSI se il buffer è vuoto (evita di consumare dati inesistenti)
- *  - L'accesso al buffer deve essere in mutua esclusione (una sola operazione put/take alla volta)
+ bounded buffer, implementato a basso livello con il monitor pattern di Java
+ Produttore-Consumatore:
+ *  - Un produttore deve BLOCCARSI se il buffer è pieno 
+ *  - Un consumatore deve BLOCCARSI se il buffer è vuoto
+ *  - L'accesso al buffer deve essere in mutua esclusione
  */
 public class BoundedBufferManual {
 
@@ -26,9 +24,7 @@ public class BoundedBufferManual {
      * si sospende (wait) rilasciando il lock, finché un consumatore non libera spazio.
      */
     public synchronized void put(Order order) throws InterruptedException {
-        // IMPORTANTE: while, non if! Un thread può essere svegliato "a sproposito"
-        // (spurious wakeup) oppure la condizione può essere ridiventata falsa
-        // se un altro producer ha già riempito il buffer nel frattempo.
+       // Un thread può essere svegliato "a sproposito"
         while (buffer.size() == capacity) {
             System.out.println("[" + Thread.currentThread().getName() + "] Buffer PIENO, produttore in attesa...");
             wait(); // rilascia il lock e sospende il thread
@@ -39,14 +35,14 @@ public class BoundedBufferManual {
                             " (buffer: " + buffer.size() + "/" + capacity + ")");
 
         // Sveglio TUTTI i thread in attesa (sia altri producer che consumer),
-        // perché non so a priori chi sta aspettando cosa. notifyAll() è più
-        // sicuro di notify() anche se leggermente meno efficiente.
+        // perché non so a priori chi sta aspettando cosa. 
+        // notifyAll() è più sicuro di notify() anche se leggermente meno efficiente.
         notifyAll();
     }
 
     /**
-     * Preleva un ordine dal buffer. Se il buffer è vuoto, il thread chiamante
-     * si sospende finché un produttore non inserisce qualcosa.
+    Preleva un ordine dal buffer. 
+    Se il buffer è vuoto, il thread chiamante si sospende finché un produttore non inserisce qualcosa.
      */
     public synchronized Order take() throws InterruptedException {
         while (buffer.isEmpty()) {
