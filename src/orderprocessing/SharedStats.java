@@ -1,9 +1,8 @@
 package orderprocessing;
 
 public class SharedStats {
-    // Versione SBAGLIATA (commentata, da citare in relazione come "cosa succede se..."):
     // private static int produced = 0;
-    // public static void orderProduced() { produced++; }  // NON atomico! race condition
+    // public static void orderProduced() { produced++; }  // NON atomico = race condition
 
     private static final java.util.concurrent.atomic.AtomicInteger produced = new java.util.concurrent.atomic.AtomicInteger(0);
     private static final java.util.concurrent.atomic.AtomicInteger consumed = new java.util.concurrent.atomic.AtomicInteger(0);
