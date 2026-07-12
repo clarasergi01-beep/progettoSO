@@ -6,11 +6,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * Stessa semantica di BoundedBufferManual, ma usando le classi
  * di java.util.concurrent che implementano internamente lo stesso
- * meccanismo (lock + condition variable) in modo ottimizzato e testato.
- *
- * Utile per dimostrare che i meccanismi visti "a mano" a lezione
- * sono gli stessi che poi si usano in produzione, solo incapsulati.
- */
+ * meccanismo in modo ottimizzato*/
 public class BoundedBufferBlockingQueue {
 
     private final BlockingQueue<Order> buffer;
