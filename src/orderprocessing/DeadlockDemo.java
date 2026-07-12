@@ -1,9 +1,9 @@
 package orderprocessing;
 
 /**
- * Dimostrazione DIDATTICA di un deadlock classico: due thread che
- * acquisiscono due lock in ordine INVERSO tra loro.
- * Eseguire con cautela: il programma si blocca volutamente!
+ Dimostrazione di un deadlock classico: due thread che
+ acquisiscono due lock in ordine INVERSO tra loro.
+ il programma si blocca volutamente
  */
 public class DeadlockDemo {
 
@@ -36,7 +36,7 @@ public class DeadlockDemo {
         // Questi due thread non termineranno mai: DEADLOCK.
     }
 
-    /** Versione corretta: entrambi i thread acquisiscono i lock nello STESSO ordine. */
+    /** Versione corretta: entrambi i thread acquisiscono i lock nello stesso ordine. */
     public static void fixedVersion() {
         Thread t1 = new Thread(() -> {
             synchronized (lockA) {
