@@ -11,16 +11,16 @@ Il sistema simula una pipeline di elaborazione ordini dove:
 
 Architettura del Software
 ---------------------------------------------------------
-Classe                                   Responsabilità
+Classe:                                                    Responsabilità
 -------------------------------------------------------------------
-Order                                    Modello dati immutabile (Thread-Safe per design).
+Order:                                                     Modello dati immutabile (Thread-Safe per design).
 
-BoundedBufferManual                      Implementazione del Monitor tramite wait/notify.
+BoundedBufferManual:                                       Implementazione del Monitor tramite wait/notify.
 
-BoundedBufferBlockingQueue               Implementazione moderna tramite java.util.concurrent.
+BoundedBufferBlockingQueue:                                Implementazione moderna tramite java.util.concurrent.
 
-SharedStats                              Gestore delle statistiche con contatori atomici.
+SharedStats:                                               Gestore delle statistiche con contatori atomici.
 
-Producer / Consumer                      Thread operativi che simulano il carico di lavoro.
+Producer / Consumer:                                       Thread operativi che simulano il carico di lavoro.
 
-Main                                     Orchestratore che gestisce il ciclo di vita dei thread e il join().
+Main:                                                      Orchestratore che gestisce il ciclo di vita dei thread e il join().
