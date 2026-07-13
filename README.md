@@ -14,8 +14,13 @@ Architettura del Software
 Classe                                   Responsabilità
 -------------------------------------------------------------------
 Order                                    Modello dati immutabile (Thread-Safe per design).
+
 BoundedBufferManual                      Implementazione del Monitor tramite wait/notify.
+
 BoundedBufferBlockingQueue               Implementazione moderna tramite java.util.concurrent.
+
 SharedStats                              Gestore delle statistiche con contatori atomici.
+
 Producer / Consumer                      Thread operativi che simulano il carico di lavoro.
+
 Main                                     Orchestratore che gestisce il ciclo di vita dei thread e il join().
